@@ -1,0 +1,26 @@
+.wrapper-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .btn {
+    cursor: pointer;
+    color: black;
+    margin-right: 10px;
+  }
+
+  .btn_register {
+    cursor: pointer;
+    background-color: #ff8f26;
+    transition: opacity 0.25s;
+    color: white;
+    border-radius: 30px;
+  }
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-left: 16px;
+  color: #000;
+}
