@@ -1,0 +1,23 @@
+.wrapper_footer {
+  height: auto;
+  max-width: 100%;
+  width: 100%;
+  padding: 68px 120px 40px;
+  overflow: hidden;
+  color: #a9b3bb;
+  background-color: #181821;
+
+  ul {
+    list-style: none;
+    li {
+      padding: 4px 0;
+      margin: 0;
+      font-size: 0.827rem;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+  }
+}

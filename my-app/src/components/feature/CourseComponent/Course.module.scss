@@ -1,0 +1,112 @@
+.wrapper_course {
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 2px 16px 0 rgba(44, 39, 56, 0.08);
+  transition: transform 0.2s, box-shadow 0.2s;
+  width: 260px;
+  margin: 0 auto;
+
+  &:hover {
+    transform: translateY(-6px); // Nhích lên 6px
+    box-shadow: 0 12px 20px rgba(18, 244, 112, 0.12); // Đổ bóng lớn hơn 1 chút để nổi bật
+  }
+}
+
+.top_gradient {
+  position: relative;
+  width: 100%;
+  height: 120px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;
+}
+
+.img_bg {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  display: block;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.subtitle {
+  color: #ffe082;
+  font-size: 1.1rem;
+  font-weight: 500;
+  margin-bottom: 8px;
+  text-align: center;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+}
+
+.img_icon {
+  margin: 0 auto;
+  display: block;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px 0 rgba(44, 39, 56, 0.08);
+  background: #fff;
+}
+
+.wrapper_content {
+  background: #fff;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  padding: 20px 16px 16px 16px;
+  text-align: left;
+
+  .course_title {
+    height: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 8px;
+  }
+
+  .course_price {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ff5722;
+    margin-bottom: 8px;
+
+    .course_price.free {
+      color: #ff5722;
+    }
+  }
+
+  .course_info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    color: #888;
+    font-size: 1rem;
+    margin-top: 8px;
+
+    .info_item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #888 !important;
+      font-weight: 500 !important;
+      font-size: 0.9rem !important;
+    }
+  }
+}

@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 
 const HeaderComponent: React.FC = () => {
   return (
-    <header className="w-full bg-white">
+    <div className="w-full bg-white">
       <div className="max-w-screen-xl mx-auto flex items-center p-[10px]">
         {/* Logo + Tiêu đề */}
         <div className="flex items-center min-w-[230px]">
@@ -35,7 +35,7 @@ const HeaderComponent: React.FC = () => {
           </button>
         </div>
       </div>
-    </header>
+    </div>
   );
 };
 
