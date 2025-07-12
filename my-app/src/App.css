@@ -33,6 +33,11 @@
   }
 }
 
+.slick-list {
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+
 .card {
   padding: 2em;
 }
