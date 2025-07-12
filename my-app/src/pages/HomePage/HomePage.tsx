@@ -3,6 +3,7 @@ import styles from './Home.module.scss';
 import classNames from 'classnames/bind';
 
 import { Row, Col } from 'antd';
+import SpinnerComponent from '../../components/SpinnerComponent/SpinnerComponent';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -16,14 +17,9 @@ const cx = classNames.bind(styles);
 
 const HomePage = () => {
   const { data, isLoading, error } = useQuery({ queryKey: ['courses'], queryFn: getCourses });
-  console.log('Data fetched from API:', data);
 
-  if (isLoading) {
-    return <div>Đang tải dữ liệu khóa học...</div>;
-  }
-
+  // Handle loading error
   if (error) {
-    // Nếu error là AxiosError, có thể có error.response?.data?.message
     let errorMsg = 'Đã xảy ra lỗi khi tải khóa học.';
     if (error instanceof Error) {
       errorMsg += ' ' + error.message;
@@ -50,20 +46,28 @@ const HomePage = () => {
             <div className={cx('title')}>
               <span>Các khóa học của F7</span>
             </div>
-            <Row gutter={[16, 24]}>
-              {data?.map((course) => (
-                <Col key={course.id} xs={24} sm={12} md={8} lg={6}>
-                  <CourseComponent
-                    id={course.id}
-                    title={course.title}
-                    price={course.price}
-                    auth={course.auth}
-                    image={course.image}
-                    time={course.time}
-                  />
-                </Col>
-              ))}
-            </Row>
+            {isLoading ? (
+              <SpinnerComponent />
+            ) : error ? (
+              <div style={{ color: 'red', padding: '20px', textAlign: 'center' }}>
+                  Không có khóa học!
+              </div>
+            ) : (
+              <Row gutter={[16, 24]}>
+                {data?.map((course) => (
+                  <Col key={course.id} xs={24} sm={12} md={8} lg={6}>
+                    <CourseComponent
+                      id={course.id}
+                      title={course.title}
+                      price={course.price}
+                      auth={course.auth}
+                      image={course.image}
+                      time={course.time}
+                    />
+                  </Col>
+                ))}
+              </Row>
+            )}
           </div>
         </div>
       </div>
