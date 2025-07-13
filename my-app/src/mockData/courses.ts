@@ -118,7 +118,7 @@ export const mockCourses = [
     shortDesc: "Giúp các bạn mới bắt đầu làm quen với ngành IT.",
     fullDesc:
       "Khóa học này cung cấp kiến thức cơ bản về lập trình, hệ thống máy tính, mạng và cơ sở dữ liệu.",
-    rating: 4.8,
+    rating: 3.8,
     auth:"Mạnh Dũng",
     time:"4h30p"
   },
@@ -142,7 +142,7 @@ export const mockCourses = [
     shortDesc: "Học HTML & CSS từ cơ bản đến nâng cao.",
     fullDesc:
       "Khóa học này giúp bạn nắm vững cách xây dựng giao diện web đẹp mắt và responsive bằng HTML & CSS.",
-    rating: 4.8,
+    rating: 5,
     auth:"Mạnh Dũng",
     time:"4h30p"
   },
@@ -154,7 +154,7 @@ export const mockCourses = [
     shortDesc: "Học lập trình Javascript từ cơ bản cho người mới bắt đầu.",
     fullDesc:
       "Khóa học này giúp bạn nắm vững ngôn ngữ Javascript, từ cú pháp cơ bản đến các khái niệm nâng cao như DOM, sự kiện và AJAX.",
-    rating: 4.8,
+    rating: 4.9,
     auth:"Mạnh Dũng",
     time:"4h30p"
   },
@@ -166,7 +166,7 @@ export const mockCourses = [
     shortDesc: "Học lập trình Javascript nâng cao cho người đã có kiến thức cơ bản.",
     fullDesc:
       "Khóa học này giúp bạn nắm vững các khái niệm nâng cao trong Javascript như async/await, closure, và design patterns.",
-    rating: 4.8,
+    rating: 4.0,
     auth:"Mạnh Dũng",
     time:"4h30p"
   },
@@ -190,7 +190,7 @@ export const mockCourses = [
     shortDesc: "Học cách xây dựng ứng dụng web hiện đại với ReactJS.",
     fullDesc:
       "Khóa học này giúp bạn nắm vững cách sử dụng ReactJS để xây dựng giao diện người dùng tương tác, quản lý trạng thái và tối ưu hiệu suất ứng dụng.",
-    rating: 4.8,
+    rating: 4.0,
     auth:"Mạnh Dũng",
     time:"4h30p"
   },
@@ -202,7 +202,7 @@ export const mockCourses = [
     shortDesc: "Học cách xây dựng ứng dụng backend với Node.js và ExpressJS.",
     fullDesc:
       "Khóa học này giúp bạn nắm vững cách xây dựng API, quản lý cơ sở dữ liệu và xử lý các yêu cầu HTTP trong ứng dụng Node.js.",
-    rating: 4.8,
+    rating: 3.0,
     auth:"Mạnh Dũng",
     time:"4h30p"
   },

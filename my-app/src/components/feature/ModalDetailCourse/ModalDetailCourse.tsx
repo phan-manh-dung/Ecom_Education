@@ -87,17 +87,13 @@ const ModalDetailCourse: React.FC<Props> = ({
               </div>
             </div>
           </div>
-
           <Divider />
-
           {/* Mô tả ngắn */}
           <div className={cx('course_section')}>
             <h3 className={cx('section_title')}>Mô tả ngắn</h3>
             <p className={cx('section_content')}>{courseData.shortDesc}</p>
           </div>
-
           <Divider />
-
           {/* Mô tả chi tiết */}
           <div className={cx('course_section')}>
             <h3 className={cx('section_title')}>Nội dung khóa học</h3>
@@ -105,9 +101,7 @@ const ModalDetailCourse: React.FC<Props> = ({
               <p>{courseData.fullDesc}</p>
             </div>
           </div>
-
           <Divider />
-
           {/* Thông tin bổ sung */}
           <div className={cx('course_section')}>
             <h3 className={cx('section_title')}>Thông tin khóa học</h3>

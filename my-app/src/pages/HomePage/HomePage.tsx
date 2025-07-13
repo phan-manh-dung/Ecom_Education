@@ -44,6 +44,9 @@ const HomePage = () => {
   const [courseDetail, setCourseDetail] = useState<CourseDetail | undefined>(undefined);
   const [detailLoading, setDetailLoading] = useState(false);
 
+  // View count states
+  const [courseViews, setCourseViews] = useState<Record<string, number>>({});
+
   // Update filtered data when data changes
   useEffect(() => {
     if (data) {
@@ -93,6 +96,12 @@ const HomePage = () => {
 
   // Hàm xử lý click vào khóa học
   const handleCourseClick = async (courseId: string) => {
+    // Tăng view count cho khóa học được click
+    setCourseViews(prev => ({
+      ...prev,
+      [courseId]: (prev[courseId] || 0) + 1
+    }));
+    
     setDetailModalVisible(true);
     setDetailLoading(true);
     
@@ -180,6 +189,7 @@ const HomePage = () => {
                           image={course.image}
                           time={course.time}
                           onCourseClick={handleCourseClick}
+                          viewCount={courseViews[course.id] || 0}
                         />
                       </Col>
                     ))}
