@@ -13,8 +13,21 @@ import { useQuery } from '@tanstack/react-query';
 import SidebarMenu from '../../components/feature/SidebarMenu/SidebarMenu';
 import SlickSlider from '../../components/feature/SlickSliderComponent/SlickSliderComponent';
 import CourseComponent from '../../components/feature/CourseComponent/CourseComponent';
+import ModalDetailCourse from '../../components/feature/ModalDetailCourse/ModalDetailCourse';
 
-import { getCourses } from '../../api/course/apiCourse';
+import { getCourses, getCourseDetail } from '../../api/course/apiCourse';
+
+interface CourseDetail {
+  id: string;
+  title: string;
+  price: number;
+  auth: string;
+  image: string;
+  time: string;
+  shortDesc: string;
+  fullDesc: string;
+  rating: number;
+}
 
 const cx = classNames.bind(styles);
 
@@ -25,6 +38,11 @@ const HomePage = () => {
   const [maxPrice, setMaxPrice] = useState('');
   const [filteredData, setFilteredData] = useState(data);
   const [isFiltered, setIsFiltered] = useState(false);
+
+  // Modal detail states
+  const [detailModalVisible, setDetailModalVisible] = useState(false);
+  const [courseDetail, setCourseDetail] = useState<CourseDetail | undefined>(undefined);
+  const [detailLoading, setDetailLoading] = useState(false);
 
   // Update filtered data when data changes
   useEffect(() => {
@@ -71,6 +89,28 @@ const HomePage = () => {
     setMinPrice('');
     setMaxPrice('');
     message.info('Đã xóa bộ lọc!');
+  };
+
+  // Hàm xử lý click vào khóa học
+  const handleCourseClick = async (courseId: string) => {
+    setDetailModalVisible(true);
+    setDetailLoading(true);
+    
+    try {
+      const detail = await getCourseDetail(courseId);
+      setCourseDetail(detail);
+    } catch {
+      message.error('Không thể tải thông tin chi tiết khóa học!');
+      setDetailModalVisible(false);
+    } finally {
+      setDetailLoading(false);
+    }
+  };
+
+  // Hàm đóng modal detail
+  const handleCloseDetailModal = () => {
+    setDetailModalVisible(false);
+    setCourseDetail(undefined);
   };
 
   // Handle loading error
@@ -139,6 +179,7 @@ const HomePage = () => {
                           auth={course.auth}
                           image={course.image}
                           time={course.time}
+                          onCourseClick={handleCourseClick}
                         />
                       </Col>
                     ))}
@@ -186,6 +227,14 @@ const HomePage = () => {
           </div>
         </Space>
       </Modal>
+
+      {/* Modal chi tiết khóa học */}
+      <ModalDetailCourse
+        visible={detailModalVisible}
+        onClose={handleCloseDetailModal}
+        courseData={courseDetail}
+        loading={detailLoading}
+      />
     </div>
   );
 };
