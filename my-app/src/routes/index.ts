@@ -1,4 +1,4 @@
-import BlogPage from '../pages/BlogPage/BlogPage';
+import LearningPathPage from '../pages/LearningPathPage/LearningPathPage';
 import HomePage from '../pages/HomePage/HomePage';
 import IndividualPage from '../pages/IndividualPage/IndividualPage';
 
@@ -17,8 +17,8 @@ export const routes: RouteConfig[] = [
     isShowFooter: true
   },
   {
-    path: '/blog',
-    page: BlogPage,
+    path: '/learning-path',
+    page: LearningPathPage,
     isShowHeader: true,
     isShowFooter: true
   },

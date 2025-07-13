@@ -26,6 +26,10 @@ interface CourseDetail {
 }
 
 const IndividualPage = () => {
+  useEffect(() => {
+    document.title = 'Cá nhân';
+  }, []);
+
   const [favoriteCourseIds, setFavoriteCourseIds] = useState<string[]>([]);
   const [favoriteCourses, setFavoriteCourses] = useState<CourseDetail[]>([]);
 
@@ -158,7 +162,7 @@ const IndividualPage = () => {
       {/* Lịch sử đã xem khóa học */}
       <div className={cx('viewed_section')}>
         <div className={cx('viewed_header')}>
-          <h3>Các sản phẩm bạn đã xem</h3>
+          <h3>Các khóa học đã xem</h3>
           {viewedCourses.length > 0 && (
             <button className={cx('clear_btn')} onClick={handleClearViewed}>
               Xóa lịch sử
@@ -184,7 +188,7 @@ const IndividualPage = () => {
           </Row>
         ) : (
           <div className={cx('empty_viewed')}>
-            <p>Bạn chưa xem sản phẩm nào.</p>
+            <p>Bạn chưa xem khóa học nào.</p>
           </div>
         )}
       </div>

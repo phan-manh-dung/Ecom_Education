@@ -33,6 +33,9 @@ interface CourseDetail {
 const cx = classNames.bind(styles);
 
 const HomePage = () => {
+  useEffect(() => {
+    document.title = 'F7 - Học lập trình để đi làm';
+  }, []);
   const { data, isLoading, error } = useQuery({ queryKey: ['courses'], queryFn: getCourses });
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [minPrice, setMinPrice] = useState('');

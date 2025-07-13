@@ -24,3 +24,15 @@
   margin-left: 16px;
   color: #000;
 }
+
+.wrapper-logo {
+  cursor: pointer;
+}
+
+.back_btn {
+  margin-left: 20px;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
