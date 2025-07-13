@@ -16,6 +16,7 @@ import CourseComponent from '../../components/feature/CourseComponent/CourseComp
 import ModalDetailCourse from '../../components/feature/ModalDetailCourse/ModalDetailCourse';
 
 import { getCourses, getCourseDetail } from '../../api/course/apiCourse';
+import { addViewedCourse } from '../../utils/storage';
 
 interface CourseDetail {
   id: string;
@@ -101,6 +102,9 @@ const HomePage = () => {
       ...prev,
       [courseId]: (prev[courseId] || 0) + 1
     }));
+
+    // Lưu lịch sử xem
+    addViewedCourse(courseId);
     
     setDetailModalVisible(true);
     setDetailLoading(true);

@@ -8,7 +8,7 @@ import classNames from 'classnames/bind';
 
 import CourseComponent from '../../components/feature/CourseComponent/CourseComponent';
 import ModalDetailCourse from '../../components/feature/ModalDetailCourse/ModalDetailCourse';
-import { getFavoriteCourses, removeFavoriteCourse } from '../../utils/storage';
+import { getFavoriteCourses, removeFavoriteCourse, getViewedCourses, clearViewedCourses } from '../../utils/storage';
 import { mockCourses } from '../../mockData/courses';
 
 const cx = classNames.bind(styles);
@@ -33,6 +33,9 @@ const IndividualPage = () => {
   const [detailModalVisible, setDetailModalVisible] = useState(false);
   const [selectedCourse, setSelectedCourse] = useState<CourseDetail | undefined>(undefined);
 
+  // Lịch sử đã xem
+  const [viewedCourses, setViewedCourses] = useState<CourseDetail[]>([]);
+
   // Lấy danh sách khóa học yêu thích
   useEffect(() => {
     const favoriteIds = getFavoriteCourses();
@@ -43,6 +46,13 @@ const IndividualPage = () => {
       favoriteIds.includes(course.id)
     );
     setFavoriteCourses(filteredCourses);
+  }, []);
+
+  // Lấy lịch sử đã xem
+  useEffect(() => {
+    const viewedIds = getViewedCourses();
+    const viewed = mockCourses.filter(course => viewedIds.includes(course.id));
+    setViewedCourses(viewed);
   }, []);
 
   // Hàm xử lý bỏ yêu thích
@@ -61,15 +71,23 @@ const IndividualPage = () => {
 
   // Hàm xử lý click vào khóa học (mở modal detail)
   const handleCourseClick = (courseId: string) => {
-    const course = favoriteCourses.find(c => c.id === courseId);
+    const course = mockCourses.find(c => c.id === courseId);
     setSelectedCourse(course);
     setDetailModalVisible(true);
+    // KHÔNG gọi addViewedCourse ở đây nữa
   };
 
   // Hàm đóng modal detail
   const handleCloseDetailModal = () => {
     setDetailModalVisible(false);
     setSelectedCourse(undefined);
+  };
+
+  // Xóa toàn bộ lịch sử đã xem
+  const handleClearViewed = () => {
+    setViewedCourses([]);
+    clearViewedCourses();
+    message.success('Đã xóa lịch sử đã xem!');
   };
 
   return (
@@ -133,6 +151,40 @@ const IndividualPage = () => {
                 </div>
               }
             />
+          </div>
+        )}
+      </div>
+
+      {/* Lịch sử đã xem khóa học */}
+      <div className={cx('viewed_section')}>
+        <div className={cx('viewed_header')}>
+          <h3>Các sản phẩm bạn đã xem</h3>
+          {viewedCourses.length > 0 && (
+            <button className={cx('clear_btn')} onClick={handleClearViewed}>
+              Xóa lịch sử
+            </button>
+          )}
+        </div>
+        {viewedCourses.length > 0 ? (
+          <Row gutter={[16, 24]}>
+            {viewedCourses.map((course) => (
+              <Col key={course.id} xs={24} sm={12} md={8} lg={6}>
+                <CourseComponent
+                  id={course.id}
+                  title={course.title}
+                  price={course.price}
+                  auth={course.auth}
+                  image={course.image}
+                  time={course.time}
+                  onCourseClick={handleCourseClick}
+                  viewCount={0}
+                />
+              </Col>
+            ))}
+          </Row>
+        ) : (
+          <div className={cx('empty_viewed')}>
+            <p>Bạn chưa xem sản phẩm nào.</p>
           </div>
         )}
       </div>

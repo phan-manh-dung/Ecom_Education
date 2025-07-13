@@ -81,3 +81,42 @@ export const isFavoriteCourse = (id: string): boolean => {
 export const getFavoriteCoursesCount = (): number => {
   return getFavoriteCourses().length;
 };
+
+/**
+ * Lấy danh sách ID khóa học đã xem từ localStorage
+ */
+export const getViewedCourses = (): string[] => {
+  try {
+    const saved = localStorage.getItem('viewedCourses');
+    return saved ? JSON.parse(saved) : [];
+  } catch (error) {
+    console.error('Lỗi khi đọc lịch sử xem:', error);
+    return [];
+  }
+};
+
+/**
+ * Thêm một khóa học vào lịch sử xem (không trùng lặp, mới nhất lên đầu)
+ */
+export const addViewedCourse = (id: string): void => {
+  try {
+    let viewed = getViewedCourses();
+    viewed = viewed.filter(courseId => courseId !== id); // Xóa nếu đã có
+    viewed.unshift(id); // Thêm mới nhất lên đầu
+    if (viewed.length > 20) viewed = viewed.slice(0, 20); // Giới hạn 20 mục gần nhất
+    localStorage.setItem('viewedCourses', JSON.stringify(viewed));
+  } catch (error) {
+    console.error('Lỗi khi thêm lịch sử xem:', error);
+  }
+};
+
+/**
+ * Xóa toàn bộ lịch sử xem
+ */
+export const clearViewedCourses = (): void => {
+  try {
+    localStorage.removeItem('viewedCourses');
+  } catch (error) {
+    console.error('Lỗi khi xóa lịch sử xem:', error);
+  }
+};
