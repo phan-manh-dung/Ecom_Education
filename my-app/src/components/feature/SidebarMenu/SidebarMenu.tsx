@@ -24,9 +24,9 @@ const SidebarMenu: React.FC = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/blog" className={({ isActive }) => cx('menuLink', { active: isActive })}>
+          <NavLink to="/individual" className={({ isActive }) => cx('menuLink', { active: isActive })}>
             <FontAwesomeIcon icon={faReceipt} style={{ width: '20px', height: '20px' }} />
-            <span>Bài viết</span>
+            <span>Cá nhân</span>
           </NavLink>
         </li>
       </ul>

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faHeart, faEye } from '@fortawesome/free-solid-svg-icons';
 
 import { formatPrice } from '../../../utils/format';
+import { isFavoriteCourse, toggleFavoriteCourse } from '../../../utils/storage';
 import styles from './Course.module.scss';
 import classNames from 'classnames/bind';
 
@@ -20,11 +21,25 @@ interface Props {
 }
 
 const CourseComponent = ({ id, title, price, auth, image, time, onCourseClick, viewCount = 0 }: Props) => {
-  // hàm xử lý sự kiện click vào khóa học
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  // Kiểm tra trạng thái yêu thích khi component mount
+  useEffect(() => {
+    setIsFavorite(isFavoriteCourse(id));
+  }, [id]);
+
+  // Hàm xử lý sự kiện click vào khóa học
   const handleClick = () => {
     if (onCourseClick) {
       onCourseClick(id);
     }
+  };
+
+  // Hàm xử lý sự kiện click vào icon heart
+  const handleFavoriteClick = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Ngăn không cho trigger click vào khóa học
+    toggleFavoriteCourse(id);
+    setIsFavorite(!isFavorite);
   };
 
   return (
@@ -36,7 +51,19 @@ const CourseComponent = ({ id, title, price, auth, image, time, onCourseClick, v
         <h3 className={cx('course_title')}>{title}</h3>
         <div className={cx('course_price')}>{price ? formatPrice(price) : 'Liên hệ'}</div>
         <div className={cx('tym')}>
-          <FontAwesomeIcon icon={faHeart} style={{ width: '15px', height: '15px' }} />
+          <FontAwesomeIcon 
+            icon={faHeart} 
+            style={{ 
+              width: '15px', 
+              height: '15px',
+              color: isFavorite ? '#ff4d4f' : '#666',
+              cursor: 'pointer',
+              transition: 'all 0.3s ease',
+              opacity: isFavorite ? 1 : 0.5
+            }}
+            onClick={handleFavoriteClick}
+            className={cx('heart_icon', { 'heart_filled': isFavorite })}
+          />
           <div className={cx('wrapper_view')}>
             <span>{viewCount}</span>
             <FontAwesomeIcon icon={faEye} style={{ width: '15px', height: '15px' }} />
