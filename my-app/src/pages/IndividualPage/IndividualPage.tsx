@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Empty, message } from 'antd';
+import { Row, Col, Empty } from 'antd';
+import toast from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faTrash ,faReceipt } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './Individual.module.scss';
 import classNames from 'classnames/bind';
@@ -10,6 +11,7 @@ import CourseComponent from '../../components/feature/CourseComponent/CourseComp
 import ModalDetailCourse from '../../components/feature/ModalDetailCourse/ModalDetailCourse';
 import { getFavoriteCourses, removeFavoriteCourse, getViewedCourses, clearViewedCourses } from '../../utils/storage';
 import { mockCourses } from '../../mockData/courses';
+import { useNavigate } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
@@ -39,6 +41,7 @@ const IndividualPage = () => {
 
   // Lịch sử đã xem
   const [viewedCourses, setViewedCourses] = useState<CourseDetail[]>([]);
+  const navigate = useNavigate();
 
   // Lấy danh sách khóa học yêu thích
   useEffect(() => {
@@ -70,7 +73,7 @@ const IndividualPage = () => {
     const newFavoriteCourses = favoriteCourses.filter(course => course.id !== courseId);
     setFavoriteCourses(newFavoriteCourses);
     
-    message.success('Đã bỏ yêu thích khóa học!');
+    toast.success('Đã bỏ yêu thích khóa học!');
   };
 
   // Hàm xử lý click vào khóa học (mở modal detail)
@@ -91,7 +94,7 @@ const IndividualPage = () => {
   const handleClearViewed = () => {
     setViewedCourses([]);
     clearViewedCourses();
-    message.success('Đã xóa lịch sử đã xem!');
+    toast.success('Đã xóa lịch sử đã xem!');
   };
 
   return (
@@ -149,7 +152,7 @@ const IndividualPage = () => {
                 <div className={cx('empty_content')}>
                   <h3>Chưa có khóa học yêu thích</h3>
                   <p>Hãy khám phá các khóa học và thêm vào danh sách yêu thích của bạn!</p>
-                  <button className={cx('explore_btn')}>
+                  <button onClick={() => navigate('/')} className={cx('explore_btn')}>
                     Khám phá khóa học
                   </button>
                 </div>
@@ -162,7 +165,10 @@ const IndividualPage = () => {
       {/* Lịch sử đã xem khóa học */}
       <div className={cx('viewed_section')}>
         <div className={cx('viewed_header')}>
-          <h3>Các khóa học đã xem</h3>
+           <h1 className={cx('page_title')}>
+            <FontAwesomeIcon icon={faReceipt} className={cx('heart_icon')} />
+            Khóa học đã xem
+          </h1>
           {viewedCourses.length > 0 && (
             <button className={cx('clear_btn')} onClick={handleClearViewed}>
               Xóa lịch sử

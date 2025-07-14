@@ -56,6 +56,11 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Fix z-index cho message của antd nếu bị che */
+.ant-message {
+  z-index: 9999 !important;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

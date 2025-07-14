@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
+
 import styles from './Home.module.scss';
 import classNames from 'classnames/bind';
 
-import { Row, Col, Button, Modal, Input, Space, message } from 'antd';
+import { Row, Col, Button, Modal, Input, Space } from 'antd';
 import SpinnerComponent from '../../components/SpinnerComponent/SpinnerComponent';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -17,6 +18,7 @@ import ModalDetailCourse from '../../components/feature/ModalDetailCourse/ModalD
 
 import { getCourses, getCourseDetail } from '../../api/course/apiCourse';
 import { addViewedCourse } from '../../utils/storage';
+import toast from 'react-hot-toast';
 
 interface CourseDetail {
   id: string;
@@ -58,10 +60,17 @@ const HomePage = () => {
     }
   }, [data]);
 
+  // Hiển thị thông báo khi trạng thái yêu thích thay đổi
+  const handleFavoriteChange = (isFavorite: boolean) => {
+    toast.success(
+      isFavorite ? 'Đã thêm khóa học vào danh sách yêu thích' : 'Đã bỏ khóa học khỏi danh sách yêu thích'
+    );
+  };
+
   // hàm lọc khóa học theo giá
   const handleFilter = () => {
     if (!minPrice && !maxPrice) {
-      message.warning('Vui lòng nhập ít nhất một giá trị!');
+      toast.error('Vui lòng nhập ít nhất một giá trị!');
       return;
     }
 
@@ -69,7 +78,7 @@ const HomePage = () => {
     const max = maxPrice ? parseInt(maxPrice) : Number.MAX_SAFE_INTEGER;
 
     if (min > max && maxPrice) {
-      message.error('Giá tối thiểu không thể lớn hơn giá tối đa!');
+      toast.error('Giá tối thiểu không thể lớn hơn giá tối đa!');
       return;
     }
 
@@ -81,11 +90,11 @@ const HomePage = () => {
     setFilteredData(filtered);
     setIsFiltered(true);
     setIsModalVisible(false);
-    
+
     if (filtered?.length === 0) {
-      message.info('Không có khóa học nào trong khoảng giá này!');
+      toast.error('Không có khóa học nào trong khoảng giá này!');
     } else {
-      message.success(`Tìm thấy ${filtered?.length} khóa học!`);
+      toast.success(`Tìm thấy ${filtered?.length} khóa học!`);
     }
   };
 
@@ -95,28 +104,28 @@ const HomePage = () => {
     setIsFiltered(false);
     setMinPrice('');
     setMaxPrice('');
-    message.info('Đã xóa bộ lọc!');
+    toast.success('Đã xóa bộ lọc!');
   };
 
   // Hàm xử lý click vào khóa học
   const handleCourseClick = async (courseId: string) => {
     // Tăng view count cho khóa học được click
-    setCourseViews(prev => ({
+    setCourseViews((prev) => ({
       ...prev,
       [courseId]: (prev[courseId] || 0) + 1
     }));
 
     // Lưu lịch sử xem
     addViewedCourse(courseId);
-    
+
     setDetailModalVisible(true);
     setDetailLoading(true);
-    
+
     try {
       const detail = await getCourseDetail(courseId);
       setCourseDetail(detail);
     } catch {
-      message.error('Không thể tải thông tin chi tiết khóa học!');
+      toast.error('Không thể tải thông tin chi tiết khóa học!');
       setDetailModalVisible(false);
     } finally {
       setDetailLoading(false);
@@ -154,24 +163,19 @@ const HomePage = () => {
           </div>
           {/* Course component */}
           <div className={cx('wrapper_course')}>
-            <div className={cx('title')} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div
+              className={cx('title')}
+              style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <span>Các khóa học của F7</span>
               <Space className={cx('wrapper_space')}>
-                <Button 
-                  type="primary" 
-                  onClick={() => setIsModalVisible(true)}
-                  className={cx('btn_filter')}
-                >
-                  <FontAwesomeIcon icon={faFilter} style={{ width: '15px', height: '15px' , color:'black' }} />
+                <Button type="primary" onClick={() => setIsModalVisible(true)} className={cx('btn_filter')}>
+                  <FontAwesomeIcon icon={faFilter} style={{ width: '15px', height: '15px', color: 'black' }} />
                   Khoảng giá
                 </Button>
                 {isFiltered && (
-                  <Button 
-                    onClick={handleClearFilter}
-                    className={cx('btn_filter', 'btn_back')}
-                  >
-                    <FontAwesomeIcon icon={faBackward} style={{ width: '15px', height: '15px' , color:'white' }} />
-                    Quay lại
+                  <Button onClick={handleClearFilter} className={cx('btn_filter', 'btn_back')}>
+                    <FontAwesomeIcon icon={faBackward} style={{ width: '15px', height: '15px', color: 'white' }} />
+                    Thoát lọc
                   </Button>
                 )}
               </Space>
@@ -179,9 +183,7 @@ const HomePage = () => {
             {isLoading ? (
               <SpinnerComponent />
             ) : error ? (
-              <div style={{ color: 'red', padding: '20px', textAlign: 'center' }}>
-                  Không có khóa học!
-              </div>
+              <div style={{ color: 'red', padding: '20px', textAlign: 'center' }}>Không có khóa học!</div>
             ) : (
               <>
                 {filteredData && filteredData.length > 0 ? (
@@ -197,6 +199,7 @@ const HomePage = () => {
                           time={course.time}
                           onCourseClick={handleCourseClick}
                           viewCount={courseViews[course.id] || 0}
+                          onFavoriteChange={handleFavoriteChange}
                         />
                       </Col>
                     ))}
@@ -219,8 +222,7 @@ const HomePage = () => {
         onOk={handleFilter}
         onCancel={() => setIsModalVisible(false)}
         okText="Áp dụng"
-        cancelText="Hủy"
-      >
+        cancelText="Hủy">
         <Space direction="vertical" style={{ width: '100%' }}>
           <div>
             <label>Giá tối thiểu (VNĐ)</label>

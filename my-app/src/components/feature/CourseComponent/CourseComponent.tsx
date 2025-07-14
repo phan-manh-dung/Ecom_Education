@@ -18,9 +18,10 @@ interface Props {
   image: string;
   onCourseClick?: (id: string) => void;
   viewCount?: number;
+  onFavoriteChange?: (isFavorite: boolean) => void;
 }
 
-const CourseComponent = ({ id, title, price, auth, image, time, onCourseClick, viewCount = 0 }: Props) => {
+const CourseComponent = ({ id, title, price, auth, image, time, onCourseClick, viewCount = 0 , onFavoriteChange}: Props) => {
   const [isFavorite, setIsFavorite] = useState(false);
 
   // Kiểm tra trạng thái yêu thích khi component mount
@@ -37,9 +38,13 @@ const CourseComponent = ({ id, title, price, auth, image, time, onCourseClick, v
 
   // Hàm xử lý sự kiện click vào icon heart
   const handleFavoriteClick = (e: React.MouseEvent) => {
-    e.stopPropagation(); // Ngăn không cho trigger click vào khóa học
+    e.stopPropagation(); // Ngăn không cho trigger click 
     toggleFavoriteCourse(id);
-    setIsFavorite(!isFavorite);
+    const newFavorite = !isFavorite;
+    setIsFavorite(newFavorite);
+    if (onFavoriteChange) {
+      onFavoriteChange(newFavorite)
+    }
   };
 
   return (
@@ -51,10 +56,10 @@ const CourseComponent = ({ id, title, price, auth, image, time, onCourseClick, v
         <h3 className={cx('course_title')}>{title}</h3>
         <div className={cx('course_price')}>{price ? formatPrice(price) : 'Liên hệ'}</div>
         <div className={cx('tym')}>
-          <FontAwesomeIcon 
-            icon={faHeart} 
-            style={{ 
-              width: '15px', 
+          <FontAwesomeIcon
+            icon={faHeart}
+            style={{
+              width: '15px',
               height: '15px',
               color: isFavorite ? '#ff4d4f' : '#666',
               cursor: 'pointer',
@@ -62,7 +67,7 @@ const CourseComponent = ({ id, title, price, auth, image, time, onCourseClick, v
               opacity: isFavorite ? 1 : 0.5
             }}
             onClick={handleFavoriteClick}
-            className={cx('heart_icon', { 'heart_filled': isFavorite })}
+            className={cx('heart_icon', { heart_filled: isFavorite })}
           />
           <div className={cx('wrapper_view')}>
             <span>{viewCount}</span>
