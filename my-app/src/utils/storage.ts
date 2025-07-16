@@ -120,3 +120,65 @@ export const clearViewedCourses = (): void => {
     console.error('Lỗi khi xóa lịch sử xem:', error);
   }
 };
+
+// CART STORAGE
+export interface CartItem {
+  id: string;
+  quantity: number;
+}
+
+export const getCart = (): CartItem[] => {
+  try {
+    const saved = localStorage.getItem('cart');
+    return saved ? JSON.parse(saved) : [];
+  } catch (error) {
+    console.error('Lỗi khi đọc giỏ hàng:', error);
+    return [];
+  }
+};
+
+export const addToCart = (id: string, quantity: number = 1): void => {
+  try {
+    const cart = getCart();
+    const idx = cart.findIndex(item => item.id === id);
+    if (idx > -1) {
+      cart[idx].quantity += quantity;
+    } else {
+      cart.push({ id, quantity });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+  } catch (error) {
+    console.error('Lỗi khi thêm vào giỏ hàng:', error);
+  }
+};
+
+export const removeFromCart = (id: string): void => {
+  try {
+    let cart = getCart();
+    cart = cart.filter(item => item.id !== id);
+    localStorage.setItem('cart', JSON.stringify(cart));
+  } catch (error) {
+    console.error('Lỗi khi xóa khỏi giỏ hàng:', error);
+  }
+};
+
+export const clearCart = (): void => {
+  try {
+    localStorage.removeItem('cart');
+  } catch (error) {
+    console.error('Lỗi khi xóa giỏ hàng:', error);
+  }
+};
+
+export const updateCartItemQuantity = (id: string, quantity: number): void => {
+  try {
+    const cart = getCart();
+    const idx = cart.findIndex(item => item.id === id);
+    if (idx > -1) {
+      cart[idx].quantity = quantity;
+      localStorage.setItem('cart', JSON.stringify(cart));
+    }
+  } catch (error) {
+    console.error('Lỗi khi cập nhật số lượng:', error);
+  }
+};

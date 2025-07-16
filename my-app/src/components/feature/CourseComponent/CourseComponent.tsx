@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faClock, faHeart, faEye } from '@fortawesome/free-solid-svg-icons';
 
 import { formatPrice } from '../../../utils/format';
-import { isFavoriteCourse, toggleFavoriteCourse } from '../../../utils/storage';
+import { isFavoriteCourse, toggleFavoriteCourse, addToCart } from '../../../utils/storage';
 import styles from './Course.module.scss';
 import classNames from 'classnames/bind';
+import toast from 'react-hot-toast';
 
 const cx = classNames.bind(styles);
 
@@ -55,6 +56,19 @@ const CourseComponent = ({ id, title, price, auth, image, time, onCourseClick, v
       <div className={cx('wrapper_content')}>
         <h3 className={cx('course_title')}>{title}</h3>
         <div className={cx('course_price')}>{price ? formatPrice(price) : 'Liên hệ'}</div>
+        <div className={cx('wrapper_btn-cart')}>
+          <button
+            className={cx('add_to_cart_btn')}
+            onClick={e => {
+              e.stopPropagation();
+              addToCart(id, 1);
+              toast.success('Đã thêm vào giỏ hàng!');
+            }}
+            
+          >
+            Thêm vào giỏ hàng
+          </button>
+        </div>
         <div className={cx('tym')}>
           <FontAwesomeIcon
             icon={faHeart}

@@ -125,3 +125,22 @@
     font-weight: 500;
   }
 }
+
+.wrapper_btn-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .add_to_cart_btn {
+    background: linear-gradient(135deg, #f4a638 0%, #f32c9d 100%);
+    cursor: pointer;
+    border: none;
+    color: #111;
+
+    &:hover {
+      background: linear-gradient(135deg, #f1bc72 0%, #f16fb9 100%);
+      border: none;
+      color: #fff;
+    }
+  }
+}

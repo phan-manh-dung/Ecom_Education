@@ -1,4 +1,4 @@
-import LearningPathPage from '../pages/LearningPathPage/LearningPathPage';
+import MyCartPage from '../pages/MyCartPage/MyCartPage';
 import HomePage from '../pages/HomePage/HomePage';
 import IndividualPage from '../pages/IndividualPage/IndividualPage';
 
@@ -17,8 +17,8 @@ export const routes: RouteConfig[] = [
     isShowFooter: true
   },
   {
-    path: '/learning-path',
-    page: LearningPathPage,
+    path: '/my-cart',
+    page: MyCartPage,
     isShowHeader: true,
     isShowFooter: true
   },
