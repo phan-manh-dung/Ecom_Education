@@ -15,6 +15,7 @@ import SidebarMenu from '../../components/feature/SidebarMenu/SidebarMenu';
 import SlickSlider from '../../components/feature/SlickSliderComponent/SlickSliderComponent';
 import CourseComponent from '../../components/feature/CourseComponent/CourseComponent';
 import ModalDetailCourse from '../../components/feature/ModalDetailCourse/ModalDetailCourse';
+import ChatBotComponent from '../../components/feature/ChatbotComponent/ChatBotComponent';
 
 import { getCourses, getCourseDetail } from '../../api/course/apiCourse';
 import { addViewedCourse } from '../../utils/storage';
@@ -254,6 +255,7 @@ const HomePage = () => {
         courseData={courseDetail}
         loading={detailLoading}
       />
+      <ChatBotComponent />
     </div>
   );
 };

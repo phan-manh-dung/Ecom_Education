@@ -5,6 +5,8 @@ import { mockCourses } from '../../mockData/courses';
 import { formatPrice } from '../../utils/format';
 import styles from './MyCart.module.scss';
 import toast from 'react-hot-toast';
+import CourseComponent from '../../components/feature/CourseComponent/CourseComponent';
+import type { CourseDetail } from '../../components/feature/ModalDetailCourse/ModalDetailCourse';
 
 // Custom confirm toast
 function toastConfirm(message: string): Promise<boolean> {
@@ -42,6 +44,8 @@ function toastConfirm(message: string): Promise<boolean> {
 
 const MyCartPage: React.FC = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const [suggestModal, setSuggestModal] = useState(false);
+  const [suggestedCourses, setSuggestedCourses] = useState<CourseDetail[]>([]);
 
   useEffect(() => {
     setCart(getCart());
@@ -78,9 +82,31 @@ const MyCartPage: React.FC = () => {
     return sum + (course ? course.price * item.quantity : 0);
   }, 0);
 
+  // Gợi ý theo tag trong giỏ hàng
+  const handleSuggest = () => {
+    // Lấy tất cả tag của các sản phẩm trong giỏ
+    const cartIds = cart.map(item => item.id);
+    const cartTags = cart
+      .map(item => getCourseInfo(item.id)?.tags || [])
+      .flat();
+    // Lọc ra các khóa học có ít nhất 1 tag trùng, không trùng id với giỏ
+    const suggestions = mockCourses.filter(course =>
+      course.tags &&
+      course.tags.some((tag: string) => cartTags.includes(tag)) &&
+      !cartIds.includes(course.id)
+    );
+    setSuggestedCourses(suggestions);
+    setSuggestModal(true);
+  };
+
   return (
     <div className={styles.cart_container}>
       <h2 className={styles.cart_title}>Giỏ hàng của bạn</h2>
+      <div style={{textAlign:'right', marginBottom: 16}}>
+        <button className={styles.btn_sug} onClick={handleSuggest}>
+          Gợi ý theo giỏ hàng
+        </button>
+      </div>
       {cart.length === 0 ? (
         <p style={{textAlign:'center',color:'#fff'}}>Bạn chưa có khóa học nào!</p>
       ) : (
@@ -131,6 +157,39 @@ const MyCartPage: React.FC = () => {
             </button>
           </div>
         </>
+      )}
+      {/* Modal gợi ý */}
+      {suggestModal && (
+        <div style={{
+          position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.35)', zIndex: 1000,
+          display: 'flex', alignItems: 'center', justifyContent: 'center'
+        }}>
+          <div style={{ background: '#fff', borderRadius: 16, padding: 32, minWidth: 400, maxWidth: 700, maxHeight: '80vh', overflowY: 'auto', boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}>
+            <h3 style={{ fontSize: 22, fontWeight: 700, marginBottom: 18 }}>Gợi ý cho bạn</h3>
+            {suggestedCourses.length === 0 ? (
+              <div style={{ color: '#888', textAlign: 'center', padding: 24 }}>Không tìm thấy khóa học phù hợp.</div>
+            ) : (
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 18 }}>
+                {suggestedCourses.map(course => (
+                  <CourseComponent
+                    key={course.id}
+                    id={course.id}
+                    title={course.title}
+                    price={course.price}
+                    auth={course.auth}
+                    image={course.image}
+                    time={course.time}
+                  />
+                ))}
+              </div>
+            )}
+            <div style={{ textAlign: 'right', marginTop: 24 }}>
+              <button className={styles.cart_clear_btn} style={{ background: '#888' }} onClick={() => setSuggestModal(false)}>
+                Đóng
+              </button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );

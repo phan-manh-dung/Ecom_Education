@@ -135,3 +135,13 @@
 .cart_clear_btn:hover {
   background: #d9363e;
 }
+
+.btn_sug {
+  background: linear-gradient(135deg, #c87e16 0%, #91185d 100%);
+  color: #fff;
+
+  &:hover {
+    background: linear-gradient(135deg, #dea059 0%, #b93281 100%);
+    color: #cbc1c1;
+  }
+}
