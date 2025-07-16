@@ -1,0 +1,197 @@
+.chatbot_fab {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 1000;
+  background: #fff;
+  border: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: box-shadow 0.2s;
+}
+
+.chatbot_fab:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.tiki_panel_wrapper {
+  position: fixed;
+  right: 32px;
+  bottom: 32px;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.tiki_panel {
+  width: 370px;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  animation: fadeInUp 0.3s;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.tiki_header {
+  display: flex;
+  align-items: center;
+  background: #f5f7fa;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  position: relative;
+}
+
+.tiki_avatar {
+  width: 40px;
+  height: 40px;
+  background: #e0f3ff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+}
+
+.tiki_title {
+  font-weight: 600;
+  font-size: 18px;
+  color: #1a94ff;
+  flex: 1;
+}
+
+.tiki_minimize,
+.tiki_close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  color: #888;
+  font-size: 18px;
+  transition: color 0.2s;
+}
+.tiki_minimize:hover,
+.tiki_close:hover {
+  color: #1a94ff;
+}
+
+.tiki_body {
+  padding: 16px;
+  background: #fafdff;
+  min-height: 220px;
+  max-height: 320px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tiki_msg_user {
+  align-self: flex-end;
+  background: #e0f3ff;
+  color: #1a94ff;
+  border-radius: 16px 16px 0 16px;
+  padding: 10px 16px;
+  max-width: 80%;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.tiki_msg_bot {
+  align-self: flex-start;
+  background: #fff;
+  color: #333;
+  border-radius: 16px 16px 16px 0;
+  padding: 10px 16px;
+  max-width: 80%;
+  margin-bottom: 4px;
+  font-size: 15px;
+  box-shadow: 0 1px 4px rgba(26, 148, 255, 0.07);
+}
+
+.tiki_suggestions {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.tiki_course_card {
+  background: #f5f7fa;
+  border-radius: 8px;
+  box-shadow: 0 1px 4px rgba(26, 148, 255, 0.07);
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  gap: 8px;
+  min-width: 140px;
+}
+.tiki_course_card img {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  object-fit: cover;
+}
+.tiki_course_info {
+  display: flex;
+  flex-direction: column;
+}
+.tiki_course_title {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a94ff;
+}
+.tiki_course_price {
+  font-size: 13px;
+  color: #ff424e;
+  font-weight: 600;
+}
+
+.tiki_footer {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background: #f5f7fa;
+  border-top: 1px solid #e5e7eb;
+}
+.tiki_input {
+  flex: 1;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 15px;
+  outline: none;
+  margin-right: 8px;
+  background: #fff;
+}
+.tiki_send {
+  background: #1a94ff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.tiki_send:hover {
+  background: #0d6fd3;
+}

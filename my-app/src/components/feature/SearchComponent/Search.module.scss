@@ -1,0 +1,27 @@
+.wrapper_dropdown {
+  position: absolute;
+  top: 45px;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  z-index: 10;
+  max-height: 350px;
+  overflow-y: auto;
+  width: 63%;
+  margin: 0 auto;
+
+  .dropdown_item {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+
+    img {
+      margin-right: 12px;
+      border-radius: 4px;
+    }
+  }
+}

@@ -1,0 +1,233 @@
+.modal_detail {
+  .ant-modal-content {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+}
+
+.loading_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+
+  p {
+    margin-top: 16px;
+    color: #666;
+    font-size: 14px;
+  }
+}
+
+.error_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  text-align: center;
+
+  p {
+    color: #ff4d4f;
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+.course_detail {
+  .course_header {
+    display: flex;
+    gap: 24px;
+    margin-bottom: 24px;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  .course_image {
+    position: relative;
+    flex-shrink: 0;
+    width: 300px;
+    height: 200px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 768px) {
+      width: 100%;
+      height: 200px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .play_overlay {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.9);
+        transform: translate(-50%, -50%) scale(1.1);
+      }
+    }
+  }
+
+  .course_info {
+    flex: 1;
+
+    .course_title {
+      font-size: 24px;
+      font-weight: 700;
+      color: #1a1a1a;
+      margin-bottom: 16px;
+      line-height: 1.3;
+
+      @media (max-width: 768px) {
+        font-size: 20px;
+      }
+    }
+
+    .course_rating {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+
+      .rating_text {
+        color: #666;
+        font-size: 14px;
+      }
+    }
+
+    .course_meta {
+      margin-bottom: 20px;
+
+      .meta_item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: #666;
+        font-size: 14px;
+
+        svg {
+          color: #1890ff;
+        }
+      }
+    }
+
+    .course_price {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+
+      .price_label {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .price_value {
+        font-size: 20px;
+        font-weight: 700;
+        color: #f5222d;
+      }
+    }
+  }
+
+  .course_section {
+    margin-bottom: 24px;
+
+    .section_title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 12px;
+      position: relative;
+
+      &::before {
+        content: "";
+        position: absolute;
+        left: -12px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 4px;
+        height: 20px;
+        background: #1890ff;
+        border-radius: 2px;
+      }
+    }
+
+    .section_content {
+      color: #666;
+      line-height: 1.6;
+      font-size: 14px;
+    }
+  }
+
+  .course_features {
+    .ant-tag {
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 12px;
+    }
+  }
+
+  .course_footer {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #f0f0f0;
+    text-align: center;
+
+    .btn_primary {
+      background: #1890ff;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #40a9ff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+      }
+    }
+
+    .btn_secondary {
+      background: white;
+      color: #1890ff;
+      border: 2px solid #1890ff;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #1890ff;
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(24, 144, 255, 0.3);
+      }
+    }
+  }
+}

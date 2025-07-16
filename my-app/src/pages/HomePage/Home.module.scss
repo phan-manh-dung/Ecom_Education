@@ -17,6 +17,31 @@
           font-weight: 800;
           color: #404040;
         }
+
+        .wrapper_space {
+          .btn_filter {
+            background-color: white;
+            border: 1px solid #404040;
+            span {
+              color: black;
+              font-size: 1rem;
+              margin-bottom: 2px;
+              font-weight: 500;
+            }
+            &:hover {
+              background-color: #404040;
+              span {
+                color: white;
+              }
+            }
+          }
+          .btn_back {
+            background-color: rgb(18, 202, 18);
+            span {
+              color: white;
+            }
+          }
+        }
       }
 
       .course {

@@ -24,14 +24,12 @@ mock.onGet(/\/api\/courses\/\d+/).reply((config) => {
   }
 });
 
-// Mock API: GET /api/suggestions?userId=xxx - trả về 3 khóa học gợi ý
+// Mock API: GET /api/suggestions?userId=xxx - trả về 4 khóa học gợi ý
 mock.onGet(/\/api\/suggestions.*/).reply((config) => {
   if (!config.url) {
     return [400, { message: "URL không hợp lệ" }];
   }
-  
-  // Gợi ý đơn giản: lấy 3 khóa đầu tiên
-  const suggestions = mockCourses.slice(0, 3);
-
+  // Gợi ý: trả về 4 khóa học có id 11, 12, 13, 14
+  const suggestions = mockCourses.filter(c => ["11", "12", "13", "14"].includes(c.id));
   return [200, suggestions];
 });

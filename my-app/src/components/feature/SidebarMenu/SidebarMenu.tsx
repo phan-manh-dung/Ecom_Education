@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHouse, faBook, faReceipt } from '@fortawesome/free-solid-svg-icons';
+import { faHouse, faCartShopping, faReceipt } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames/bind';
 import styles from './SideBar.module.scss';
@@ -18,15 +18,15 @@ const SidebarMenu: React.FC = () => {
           </NavLink>
         </li>
         <li>
-          <NavLink to="/learning-path" className={({ isActive }) => cx('menuLink', { active: isActive })}>
-            <FontAwesomeIcon icon={faBook} style={{ width: '20px', height: '20px' }} />
-            <span>Lộ trình</span>
+          <NavLink to="/my-cart" className={({ isActive }) => cx('menuLink', { active: isActive })}>
+            <FontAwesomeIcon icon={faCartShopping} style={{ width: '20px', height: '20px' }} />
+            <span>Giỏ hàng</span>
           </NavLink>
         </li>
         <li>
-          <NavLink to="/blog" className={({ isActive }) => cx('menuLink', { active: isActive })}>
+          <NavLink to="/individual" className={({ isActive }) => cx('menuLink', { active: isActive })}>
             <FontAwesomeIcon icon={faReceipt} style={{ width: '20px', height: '20px' }} />
-            <span>Bài viết</span>
+            <span>Cá nhân</span>
           </NavLink>
         </li>
       </ul>

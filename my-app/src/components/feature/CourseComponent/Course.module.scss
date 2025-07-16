@@ -21,7 +21,7 @@
 .top_gradient {
   position: relative;
   width: 100%;
-  height: 120px;
+  height: 150px;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   overflow: hidden;
@@ -29,7 +29,7 @@
 
 .img_bg {
   width: 100%;
-  height: 120px;
+  height: 150px;
   object-fit: cover;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
@@ -107,6 +107,40 @@
       color: #888 !important;
       font-weight: 500 !important;
       font-size: 0.9rem !important;
+    }
+  }
+}
+
+.tym {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .wrapper_view {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #888;
+    font-size: 0.7rem;
+    font-weight: 500;
+  }
+}
+
+.wrapper_btn-cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .add_to_cart_btn {
+    background: linear-gradient(135deg, #f4a638 0%, #f32c9d 100%);
+    cursor: pointer;
+    border: none;
+    color: #111;
+
+    &:hover {
+      background: linear-gradient(135deg, #f1bc72 0%, #f16fb9 100%);
+      border: none;
+      color: #fff;
     }
   }
 }

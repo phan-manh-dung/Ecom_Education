@@ -1,6 +1,6 @@
-import BlogPage from '../pages/BlogPage/BlogPage';
+import MyCartPage from '../pages/MyCartPage/MyCartPage';
 import HomePage from '../pages/HomePage/HomePage';
-import LearningPathPage from '../pages/LearningPathPage/LearningPathPage';
+import IndividualPage from '../pages/IndividualPage/IndividualPage';
 
 export interface RouteConfig {
   path: string;
@@ -17,14 +17,14 @@ export const routes: RouteConfig[] = [
     isShowFooter: true
   },
   {
-    path: '/blog',
-    page: BlogPage,
+    path: '/my-cart',
+    page: MyCartPage,
     isShowHeader: true,
     isShowFooter: true
   },
   {
-    path: '/learning-path',
-    page: LearningPathPage,
+    path: '/individual',
+    page: IndividualPage,
     isShowHeader: true,
     isShowFooter: true
   }
