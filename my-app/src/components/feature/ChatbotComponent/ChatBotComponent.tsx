@@ -5,12 +5,30 @@ import { faRobot, faPaperPlane, faTimes, faChevronDown } from '@fortawesome/free
 import styles from './Chatbot.module.scss';
 
 function getSuggestionsFromMessage(message: string) {
-  const lower = message.toLowerCase();
+  const stopWords = [
+    'có', 'không', 'nào', 'của', 'khóa', 'học', 'gì', 'trong', 'đây', 'trang', 'bạn', 'là', 'về', 'cho', 'tôi', 'xin', 'vui', 'lòng'
+  ];
+  const keywords = message
+    .toLowerCase()
+    .replace(/[.,?!]/g, '')
+    .split(' ')
+    .filter(word => word && !stopWords.includes(word));
+
+  if (keywords.length === 0) {
+    // Nếu không có từ khóa cụ thể, trả về tất cả khóa học
+    return mockCourses;
+  }
+
   const suggestions = mockCourses.filter(course => {
-    if (course.title.toLowerCase().includes(lower)) return true;
-    if (course.tags && course.tags.some((tag: string) => lower.includes(tag))) return true;
-    return false;
+    const haystack = (
+      course.title + ' ' +
+      (course.shortDesc || '') + ' ' +
+      (course.fullDesc || '') + ' ' +
+      (course.tags ? course.tags.join(' ') : '')
+    ).toLowerCase();
+    return keywords.some(keyword => haystack.includes(keyword));
   });
+
   return suggestions;
 }
 
@@ -47,7 +65,11 @@ const ChatBotComponent: React.FC = () => {
           ...msgs,
           {
             from: 'bot',
-            text: `Tôi gợi ý cho bạn ${suggestions.length} khóa học phù hợp:`,
+            text:
+              suggestions.length === mockCourses.length && input.trim().length > 0 &&
+              getSuggestionsFromMessage(input).length === mockCourses.length
+                ? `Hiện tại chúng tôi có ${mockCourses.length} khóa học. Bạn muốn tìm về chủ đề nào?`
+                : `Tôi gợi ý cho bạn ${suggestions.length} khóa học phù hợp:`,
             suggestions
           } as ChatMessage
         ]);
