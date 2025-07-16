@@ -9,7 +9,7 @@ import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-interface CourseDetail {
+export interface CourseDetail {
   id: string;
   title: string;
   price: number;

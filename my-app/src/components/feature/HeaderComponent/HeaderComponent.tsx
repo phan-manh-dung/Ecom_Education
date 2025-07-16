@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SearchComponent from '../SearchComponent/SearchComponent';
 import logof7 from '/public/assets/logof7.png';
 import styles from './Header.module.scss';
 import classNames from 'classnames/bind';
+import ModalDetailCourse from '../ModalDetailCourse/ModalDetailCourse';
+import type { CourseDetail } from '../ModalDetailCourse/ModalDetailCourse';
 
 const cx = classNames.bind(styles);
 
@@ -11,6 +13,14 @@ const HeaderComponent = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const isHome = location.pathname === '/';
+
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState<CourseDetail | undefined>(undefined);
+
+  const handleCourseClick = (course: CourseDetail) => {
+    setSelectedCourse(course);
+    setModalVisible(true);
+  };
 
   return (
     <div className="w-full bg-white">
@@ -33,7 +43,7 @@ const HeaderComponent = () => {
 
         {/* Search */}
         <div className="flex-1 flex justify-center mx-4">
-          <SearchComponent />
+          <SearchComponent onCourseClick={handleCourseClick} />
         </div>
 
         {/* Đăng ký / Đăng nhập */}
@@ -46,6 +56,11 @@ const HeaderComponent = () => {
           </button>
         </div>
       </div>
+      <ModalDetailCourse
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        courseData={selectedCourse}
+      />
     </div>
   );
 };

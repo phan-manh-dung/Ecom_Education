@@ -3,25 +3,20 @@ import { Input } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { mockCourses } from '../../../mockData/courses';
+import type { CourseDetail } from '../ModalDetailCourse/ModalDetailCourse';
 
 import styles from './Search.module.scss';
 import classNames from 'classnames/bind';
 
 const cx = classNames.bind(styles);
 
-type Course = {
-  id: string;
-  title: string;
-  price: number;
-  image: string;
-  shortDesc: string;
-  fullDesc: string;
-  rating: number;
-  auth: string;
-  time?: string;
-};
+type Course = CourseDetail;
 
-const SearchComponent: React.FC = () => {
+interface SearchComponentProps {
+  onCourseClick?: (course: Course) => void;
+}
+
+const SearchComponent: React.FC<SearchComponentProps> = ({ onCourseClick }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [results, setResults] = useState<Course[]>([]);
   const [showDropdown, setShowDropdown] = useState(false);
@@ -70,7 +65,14 @@ const SearchComponent: React.FC = () => {
         <div className={cx('wrapper_dropdown')}>
           {results.length > 0 ? (
             results.map((course) => (
-              <div className={cx('dropdown_item')} key={course.id}>
+              <div
+                className={cx('dropdown_item')}
+                key={course.id}
+                onClick={() => {
+                  onCourseClick?.(course);
+                  setShowDropdown(false);
+                }}
+              >
                 <img src={course.image} alt={course.title} width={32} height={32} />
                 <span>{course.title}</span>
               </div>

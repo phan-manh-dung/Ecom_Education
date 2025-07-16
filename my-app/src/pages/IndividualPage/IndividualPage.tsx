@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Empty } from 'antd';
+import { Row, Col, Empty, Modal, Spin } from 'antd';
 import toast from 'react-hot-toast';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faTrash ,faReceipt } from '@fortawesome/free-solid-svg-icons';
@@ -12,6 +12,7 @@ import ModalDetailCourse from '../../components/feature/ModalDetailCourse/ModalD
 import { getFavoriteCourses, removeFavoriteCourse, getViewedCourses, clearViewedCourses } from '../../utils/storage';
 import { mockCourses } from '../../mockData/courses';
 import { useNavigate } from 'react-router-dom';
+import { getSuggestions } from '../../api/course/apiCourse';
 
 const cx = classNames.bind(styles);
 
@@ -28,6 +29,7 @@ interface CourseDetail {
 }
 
 const IndividualPage = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     document.title = 'Cá nhân';
   }, []);
@@ -41,7 +43,11 @@ const IndividualPage = () => {
 
   // Lịch sử đã xem
   const [viewedCourses, setViewedCourses] = useState<CourseDetail[]>([]);
-  const navigate = useNavigate();
+
+  // Modal gợi ý khóa học
+  const [suggestModalVisible, setSuggestModalVisible] = useState(false);
+  const [suggestedCourses, setSuggestedCourses] = useState<CourseDetail[]>([]);
+  const [loadingSuggest, setLoadingSuggest] = useState(false);
 
   // Lấy danh sách khóa học yêu thích
   useEffect(() => {
@@ -97,6 +103,25 @@ const IndividualPage = () => {
     toast.success('Đã xóa lịch sử đã xem!');
   };
 
+  // đề xuất khóa học
+  const handleShowSuggestions = async () => {
+    setLoadingSuggest(true);
+    try {
+      
+      const suggestions = await getSuggestions('1');
+      setSuggestedCourses(suggestions);
+      setSuggestModalVisible(true);
+    } catch {
+      toast.error('Không thể lấy gợi ý!');
+    } finally {
+      setLoadingSuggest(false);
+    }
+  };
+  const handleCloseSuggestModal = () => {
+    setSuggestModalVisible(false);
+    setSuggestedCourses([]);
+  };
+
   return (
     <div className={cx('wrapper_individual')}>
       <div className={cx('header_section')}>
@@ -108,6 +133,15 @@ const IndividualPage = () => {
           <p className={cx('page_subtitle')}>
             Bạn có {favoriteCourses.length} khóa học trong danh sách yêu thích
           </p>
+          <button onClick={handleShowSuggestions} className={cx('suggest_btn')} disabled={loadingSuggest}>
+            {loadingSuggest ? (
+              <>
+                <Spin size="small"  style={{ marginRight: 8 }} /> Đang gợi ý
+              </>
+            ) : (
+              'Gợi ý thông minh cho bạn'
+            )}
+          </button>
         </div>
       </div>
 
@@ -206,6 +240,42 @@ const IndividualPage = () => {
         courseData={selectedCourse}
         loading={false}
       />
+
+      {/* Modal gợi ý khóa học */}
+      <Modal
+        open={suggestModalVisible}
+        onCancel={handleCloseSuggestModal}
+        footer={null}
+        width={800}
+        className={cx('modal_detail')}
+        destroyOnClose
+      >
+        {loadingSuggest ? (
+          <div className={cx('loading_container')}>
+            Đang tải gợi ý...
+          </div>
+        ) : (
+          <div className={cx('suggested_courses')}>
+            <h2>Gợi ý cho bạn</h2>
+            <Row gutter={[16, 24]}>
+              {suggestedCourses.map((course) => (
+                <Col key={course.id} xs={24} sm={12} md={12} lg={12}>
+                  <CourseComponent
+                    id={course.id}
+                    title={course.title}
+                    price={course.price}
+                    auth={course.auth}
+                    image={course.image}
+                    time={course.time}
+                    onCourseClick={handleCourseClick}
+                    viewCount={0}
+                  />
+                </Col>
+              ))}
+            </Row>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };

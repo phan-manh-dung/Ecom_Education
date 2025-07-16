@@ -168,6 +168,25 @@
   }
 }
 
+.suggest_btn {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #c87e16 0%, #91185d 100%);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 0.95rem;
+
+  &:hover {
+    background: #5a5edc;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(102, 126, 234, 0.15);
+  }
+}
+
 .empty_viewed {
   text-align: center;
   color: #888;

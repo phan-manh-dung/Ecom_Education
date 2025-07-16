@@ -42,3 +42,17 @@ export const getCourseDetail = async (id: string): Promise<CourseDetail> => {
     }
   }
 };
+
+export const getSuggestions = async (userId: string): Promise<CourseDetail[]> => {
+  try {
+    const response = await axios.get(`/api/suggestions?userId=${userId}`);
+    return response.data;
+  } catch (error: unknown) {
+    if (axios.isAxiosError(error)) {
+      console.error('Lỗi API:', error.response?.data || error.message);
+      throw new Error(error.response?.data?.message || 'Không thể tải danh sách gợi ý');
+    } else {
+      throw new Error('Đã xảy ra lỗi!');
+    }
+  }
+};
