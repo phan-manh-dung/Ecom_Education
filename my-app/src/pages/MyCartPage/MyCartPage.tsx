@@ -4,6 +4,7 @@ import type { CartItem } from '../../utils/storage';
 import { mockCourses } from '../../mockData/courses';
 import { formatPrice } from '../../utils/format';
 import styles from './MyCart.module.scss';
+import responsiveStyles from './MyCartReponsive.module.scss';
 import toast from 'react-hot-toast';
 import CourseComponent from '../../components/feature/CourseComponent/CourseComponent';
 import type { CourseDetail } from '../../components/feature/ModalDetailCourse/ModalDetailCourse';
@@ -111,7 +112,7 @@ const MyCartPage: React.FC = () => {
         <p style={{textAlign:'center',color:'#fff'}}>Bạn chưa có khóa học nào!</p>
       ) : (
         <>
-          <table className={styles.cart_table}>
+          <table className={`${styles.cart_table} ${responsiveStyles.responsive_table}`}>
             <thead>
               <tr>
                 <th>Khóa học</th>
@@ -127,20 +128,20 @@ const MyCartPage: React.FC = () => {
                 if (!course) return null;
                 return (
                   <tr key={item.id}>
-                    <td style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                    <td className={styles.td_name} data-label="Khóa học" style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                       <img src={course.image} alt={course.title} className={styles.cart_course_img} />
                       <span className={styles.cart_course_title}>{course.title}</span>
                     </td>
-                    <td>{formatPrice(course.price)}</td>
-                    <td >
+                    <td data-label="Giá">{formatPrice(course.price)}</td>
+                    <td className={styles.td_quantity} data-label="Số lượng" >
                       <div className={styles.cart_quantity_box}>
                         <button className={styles.cart_quantity_btn} onClick={() => handleChangeQuantity(item.id, item.quantity - 1)}>-</button>
                         <span className={styles.cart_quantity_value}>{item.quantity}</span>
                         <button className={styles.cart_quantity_btn} onClick={() => handleChangeQuantity(item.id, item.quantity + 1)}>+</button>
                       </div>
                     </td>
-                    <td>{formatPrice(course.price * item.quantity)}</td>
-                    <td style={{textAlign: 'center'}}>
+                    <td data-label="Thành tiền">{formatPrice(course.price * item.quantity)}</td>
+                    <td data-label="">
                       <button className={styles.cart_remove_btn} onClick={() => handleRemove(item.id)}>Xóa</button>
                     </td>
                   </tr>
@@ -163,7 +164,8 @@ const MyCartPage: React.FC = () => {
         <div style={{
           position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh', background: 'rgba(0,0,0,0.35)', zIndex: 1000,
           display: 'flex', alignItems: 'center', justifyContent: 'center'
-        }}>
+        }}
+        >
           <div style={{ background: '#fff', borderRadius: 16, padding: 32, minWidth: 400, maxWidth: 700, maxHeight: '80vh', overflowY: 'auto', boxShadow: '0 8px 32px rgba(0,0,0,0.18)' }}>
             <h3 style={{ fontSize: 22, fontWeight: 700, marginBottom: 18 }}>Gợi ý cho bạn</h3>
             {suggestedCourses.length === 0 ? (

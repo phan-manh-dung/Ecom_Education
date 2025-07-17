@@ -1,0 +1,194 @@
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  .responsive_table {
+    width: 100%;
+    border-collapse: collapse;
+    display: block;
+    overflow-x: auto;
+    background: transparent;
+  }
+
+  .responsive_table thead {
+    display: none;
+  }
+
+  .responsive_table tbody,
+  .responsive_table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .responsive_table tr {
+    margin-bottom: 20px;
+    background: #23272f;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+    padding: 16px 0 8px 0;
+    transition: box-shadow 0.2s;
+  }
+
+  .responsive_table td {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px 18px 10px 14px;
+    border: none;
+    font-size: 16px;
+    color: #fff;
+    box-sizing: border-box;
+    background: transparent;
+    justify-content: space-between;
+  }
+
+  .responsive_table td:before {
+    content: attr(data-label);
+    flex: 0 0 120px;
+    font-weight: 600;
+    color: #ffb300;
+    margin-right: 12px;
+    font-size: 15px;
+    text-align: left;
+  }
+
+  :global(.cart_course_img) {
+    width: 54px !important;
+    height: 54px !important;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 10px;
+    border: 2px solid #ffb300;
+    background: #fff;
+  }
+
+  :global(.cart_course_title) {
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 0;
+  }
+
+  :global(.cart_quantity_box) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #181c22;
+    border-radius: 8px;
+    padding: 4px 8px;
+  }
+
+  :global(.cart_quantity_btn) {
+    background: #ffb300;
+    color: #23272f;
+    border: none;
+    border-radius: 6px;
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+  }
+  :global(.cart_quantity_btn):active {
+    background: #ffa000;
+  }
+
+  :global(.cart_quantity_value) {
+    min-width: 24px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 600;
+  }
+
+  :global(.cart_remove_btn) {
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 15px;
+    margin: 0 auto;
+    display: block;
+    margin-top: 6px;
+    transition: background 0.2s;
+  }
+  :global(.cart_remove_btn):active {
+    background: #d9363e;
+  }
+
+  /* Tổng cộng và nút xóa toàn bộ */
+  :global(.cart_total),
+  :global(.cart_clear_btn) {
+    width: 100%;
+    text-align: center !important;
+    margin: 12px 0 0 0 !important;
+    display: block !important;
+    font-size: 17px !important;
+    font-weight: 700 !important;
+  }
+  :global(.cart_clear_btn) {
+    background: #888;
+    color: #fff;
+    border-radius: 8px;
+    padding: 10px 0;
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
+  }
+  :global(.cart_clear_btn):active {
+    background: #666;
+  }
+
+  /* Gợi ý theo giỏ hàng */
+  :global(.btn_sug) {
+    width: 100%;
+    background: #ffb300;
+    color: #23272f;
+    border-radius: 8px;
+    padding: 10px 0;
+    font-size: 16px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 12px;
+    transition: background 0.2s;
+  }
+  :global(.btn_sug):active {
+    background: #ffa000;
+  }
+  .cart_course_title {
+    color: #fff !important;
+  }
+
+  .td_name {
+    padding: 0 2px !important;
+    justify-content: center !important;
+  }
+  .td_quantity {
+    padding: 10px 0px 10px 14px !important;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 900px) {
+}
+
+@media (min-width: 899px) and (max-width: 901px) {
+}
+
+/* Large devices (desktops) */
+@media (min-width: 901px) and (max-width: 1200px) {
+}
+
+/* Extra large devices (large desktops) */
+@media (min-width: 1201px) {
+}
