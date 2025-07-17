@@ -28,15 +28,20 @@ const HeaderComponent = () => {
         {/* Logo + Tiêu đề */}
         <div className={`${cx('title_md')} flex items-center min-w-[230px]`}>
           <div className={cx('wrapper-logo')}>
-            <img src={logof7} width={48} height={48} alt="Logo" className="w-10 h-10" />
+            {isHome && (
+              <img src={logof7} width={48} height={48} alt="Logo" className={`${cx('img_style')} w-10 h-10`} />
+              )}
+            {!isHome && (
+              <button className={cx('back')} onClick={() => navigate(-1)}>
+                {'<<'}
+              </button>
+            )}
           </div>
           {isHome ? (
-            <span className={cx('title')}>
-              Học Lập Trình Để Đi Làm
-            </span>
+            <span className={cx('title')}>Học Lập Trình Để Đi Làm</span>
           ) : (
             <button className={cx('back_btn')} onClick={() => navigate(-1)}>
-              {"<<"} Trở lại
+              {'<<'} Trở lại
             </button>
           )}
         </div>
@@ -48,19 +53,11 @@ const HeaderComponent = () => {
 
         {/* Đăng ký / Đăng nhập */}
         <div className={cx('wrapper-btn')}>
-          <button className={cx('btn','btn_register')}>
-            Đăng ký
-          </button>
-          <button className={cx('btn','btn_login')}>
-            Đăng nhập
-          </button>
+          <button className={cx('btn', 'btn_register')}>Đăng ký</button>
+          <button className={cx('btn', 'btn_login')}>Đăng nhập</button>
         </div>
       </div>
-      <ModalDetailCourse
-        visible={modalVisible}
-        onClose={() => setModalVisible(false)}
-        courseData={selectedCourse}
-      />
+      <ModalDetailCourse visible={modalVisible} onClose={() => setModalVisible(false)} courseData={selectedCourse} />
     </div>
   );
 };
