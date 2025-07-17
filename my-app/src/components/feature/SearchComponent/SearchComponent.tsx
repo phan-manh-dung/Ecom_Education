@@ -46,14 +46,14 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ onCourseClick }) => {
   return (
     <div style={{ position: 'relative', width: '100%' }} className="w-full flex justify-center h-[40px] ">
       <Input
-        style={{ borderRadius: '20px', width: '63%' }}
+        style={{ borderRadius: '20px', width: '90%' }}
         className="w-1/2"
         placeholder="Tìm kiếm khóa học, bài viết, video, ..."
         prefix={
           isSearching ? (
             <FontAwesomeIcon icon={faSpinner} spin className={cx('spinner_icon')} style={{ margin: '15px', width: '15px', height: '15px', color: '#999', opacity: 3.6 }} />
           ) : (
-            <FontAwesomeIcon icon={faSearch} className={cx('search_icon')} style={{ margin: '15px', width: '15px', height: '15px', color: '#999', opacity: 3.6 }} />
+            <FontAwesomeIcon icon={faSearch} className={cx('search_icon')} style={{ margin: '15px', width: '14px', height: '14px', color: '#999', opacity: 3.6 }} />
           )
         }
         value={searchTerm}

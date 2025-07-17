@@ -1,3 +1,4 @@
+@import "./IndividualReponsive.module.scss";
 .wrapper_individual {
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -22,23 +23,18 @@
 }
 
 .page_title {
-  font-size: 2.5rem;
+  font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 12px;
-
-  @media (max-width: 768px) {
-    font-size: 2rem;
-    flex-direction: column;
-    gap: 8px;
-  }
+  color: #fff;
 
   .heart_icon {
     color: #ff4d4f;
-    font-size: 2rem;
+    font-size: 1.6rem;
     animation: pulse 2s infinite;
   }
 }
@@ -131,8 +127,8 @@
 }
 
 .viewed_section {
+  background: rebeccapurple;
   margin-top: 48px;
-  background: white;
   border-radius: 12px;
   padding: 32px 20px 24px 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);

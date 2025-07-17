@@ -150,14 +150,14 @@ const HomePage = () => {
 
   return (
     <div className={cx('wrapper_home')}>
-      <div className="grid grid-cols-12 gap-4">
-        <div className={`${cx('customLeft')} col-span-1`}>
+      <div className={`${cx('grid')} grid-cols-12 gap-4`}>
+        <div className={`${cx('customLeft')} col-span-1 `}>
           <div className={cx('wrapper_ul')}>
             {/* Sidebar */}
             <SidebarMenu />
           </div>
         </div>
-        <div className={`${cx('customRight')} col-span-11`}>
+        <div className={`${cx('customRight')} col-span-11 `}>
           {/* Slick Slider */}
           <div>
             <SlickSlider />
@@ -186,11 +186,19 @@ const HomePage = () => {
             ) : error ? (
               <div style={{ color: 'red', padding: '20px', textAlign: 'center' }}>Không có khóa học!</div>
             ) : (
-              <>
+              <div>
                 {filteredData && filteredData.length > 0 ? (
-                  <Row gutter={[16, 24]}>
+                  <Row gutter={[26, 16]}  >
                     {filteredData.map((course) => (
-                      <Col key={course.id} xs={24} sm={12} md={8} lg={6}>
+                      <Col
+                        key={course.id}
+                        xs={24}   // 1 hàng 1 course (mobile)
+                        sm={12}   // 1 hàng 2 course (tablet nhỏ)
+                        md={8}   // 1 hàng 3 course (tablet lớn/laptop nhỏ)
+                        lg={8}   // 1 hàng 3 course (laptop)
+                        xl={6}    // 1 hàng 4 course (desktop)
+                        xxl={6}   // 1 hàng 4 course (desktop lớn)
+                      >
                         <CourseComponent
                           id={course.id}
                           title={course.title}
@@ -210,7 +218,7 @@ const HomePage = () => {
                     {isFiltered ? 'Không có khóa học nào trong khoảng giá này!' : 'Không có khóa học!'}
                   </div>
                 )}
-              </>
+              </div>
             )}
           </div>
         </div>
@@ -255,7 +263,10 @@ const HomePage = () => {
         courseData={courseDetail}
         loading={detailLoading}
       />
-      <ChatBotComponent />
+      <div><ChatBotComponent /></div>
+      <div className={cx('sidebar_bottom')}>
+        <SidebarMenu />
+      </div>
     </div>
   );
 };

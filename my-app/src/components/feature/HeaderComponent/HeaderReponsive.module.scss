@@ -1,0 +1,55 @@
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  .wrapper-btn {
+    .btn_login {
+      margin-right: 0px !important;
+    }
+  }
+  .title {
+    display: none;
+  }
+  .title_md {
+    min-width: 0 !important; /* Ghi đè giá trị min-w-[230px] */
+  }
+  .btn_register {
+    display: none;
+  }
+  .back_btn {
+    margin-left: 0 !important;
+    display: none;
+  }
+  .back {
+    display: block;
+
+    &:hover {
+      background-color: transparent;
+    }
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .title {
+    display: none;
+  }
+  .title_md {
+    min-width: 0 !important; /* Ghi đè giá trị min-w-[230px] */
+  }
+  .back {
+    display: none;
+  }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .back {
+    display: none;
+  }
+}
+
+/* Extra large devices (large desktops) */
+@media (min-width: 1201px) {
+  .back {
+    display: none;
+  }
+}

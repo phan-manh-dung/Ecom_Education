@@ -1,3 +1,5 @@
+@import "./HeaderReponsive.module.scss";
+
 .wrapper-btn {
   display: flex;
   justify-content: center;
@@ -9,12 +11,13 @@
     margin-right: 10px;
   }
 
-  .btn_register {
+  .btn_login {
     cursor: pointer;
     background-color: #ff8f26;
     transition: opacity 0.25s;
     color: white;
     border-radius: 30px;
+    width: auto;
   }
 }
 
