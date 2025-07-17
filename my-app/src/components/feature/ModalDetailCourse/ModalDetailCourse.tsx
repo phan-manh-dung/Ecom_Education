@@ -42,6 +42,7 @@ const ModalDetailCourse: React.FC<Props> = ({
       width={800}
       className={cx('modal_detail')}
       destroyOnClose
+      zIndex={2000}
     >
       {loading ? (
         <div className={cx('loading_container')}>

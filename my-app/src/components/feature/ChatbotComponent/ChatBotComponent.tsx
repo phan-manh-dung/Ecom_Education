@@ -3,6 +3,8 @@ import { mockCourses } from '../../../mockData/courses';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRobot, faPaperPlane, faTimes, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import styles from './Chatbot.module.scss';
+import type { CourseDetail } from '../../feature/ModalDetailCourse/ModalDetailCourse';
+import ModalDetailCourse from '../../feature/ModalDetailCourse/ModalDetailCourse';
 
 function getSuggestionsFromMessage(message: string) {
   const stopWords = [
@@ -47,6 +49,10 @@ const ChatBotComponent: React.FC = () => {
     text: 'Xin chào! Mình là Trợ lý AI. Bạn muốn tìm khóa học gì? Hãy nhập từ khóa hoặc mô tả nhu cầu của bạn.'
   }]);
   const chatEndRef = useRef<HTMLDivElement>(null);
+
+  // State cho modal chi tiết khóa học
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState<CourseDetail | null>(null);
 
   useEffect(() => {
     if (open && chatEndRef.current) {
@@ -127,7 +133,15 @@ const ChatBotComponent: React.FC = () => {
                       {msg.suggestions && (
                         <div className={styles.tiki_suggestions}>
                           {msg.suggestions.map(course => (
-                            <div key={course.id} className={styles.tiki_course_card}>
+                            <div
+                              key={course.id}
+                              className={styles.tiki_course_card}
+                              onClick={() => {
+                                setSelectedCourse(course);
+                                setModalVisible(true);
+                              }}
+                              style={{ cursor: 'pointer' }}
+                            >
                               <img src={course.image} alt={course.title} />
                               <div className={styles.tiki_course_info}>
                                 <div className={styles.tiki_course_title}>{course.title}</div>
@@ -159,6 +173,15 @@ const ChatBotComponent: React.FC = () => {
           </div>
         </div>
       )}
+      {/* Modal chi tiết khóa học đặt sau cùng để luôn nổi trên chatbot */}
+      <ModalDetailCourse
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        courseData={selectedCourse || undefined}
+        loading={false}
+        // Nếu ModalDetailCourse hỗ trợ style hoặc zIndex, có thể thêm:
+        // style={{ zIndex: 2000 }}
+      />
     </>
   );
 };
