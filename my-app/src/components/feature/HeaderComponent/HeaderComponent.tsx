@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SearchComponent from '../SearchComponent/SearchComponent';
 import logof7 from '/public/assets/logof7.png';
