@@ -1,0 +1,53 @@
+// HomeReponsive.module.scss
+
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  .wrapper_ul {
+    display: none;
+  }
+  .customLeft {
+    display: none;
+  }
+  .customRight {
+    grid-column: span 12 / span 12 !important;
+  }
+  .title {
+    flex-direction: column;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .wrapper_ul {
+    display: none;
+  }
+  .customLeft {
+    display: none;
+  }
+  .customRight {
+    grid-column: span 12 / span 12 !important;
+  }
+  .sidebar_bottom {
+    width: 100%;
+  }
+}
+
+@media (min-width: 899px) and (max-width: 901px) {
+  .sidebar_bottom {
+    display: none;
+  }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 901px) and (max-width: 1200px) {
+  .sidebar_bottom {
+    display: none;
+  }
+}
+
+/* Extra large devices (large desktops) */
+@media (min-width: 1201px) {
+  .sidebar_bottom {
+    display: none;
+  }
+}

@@ -1,0 +1,30 @@
+// HomeReponsive.module.scss
+
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  .footer_con {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .wrapper_footer {
+    padding: 10px 10px 70px 10px !important;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .wrapper_footer {
+    padding: 10px 10px 70px 10px !important;
+  }
+}
+
+@media (min-width: 899px) and (max-width: 901px) {
+}
+
+/* Large devices (desktops) */
+@media (min-width: 901px) and (max-width: 1200px) {
+}
+
+/* Extra large devices (large desktops) */
+@media (min-width: 1201px) {
+}

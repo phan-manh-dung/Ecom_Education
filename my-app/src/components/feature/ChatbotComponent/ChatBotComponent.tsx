@@ -96,7 +96,7 @@ const ChatBotComponent: React.FC = () => {
           onClick={() => setOpen(true)}
           title="Trợ lý AI"
         >
-          <FontAwesomeIcon icon={faRobot} size="2x" />
+          <FontAwesomeIcon icon={faRobot} size='2x' />
         </button>
       )}
       {/* Panel chat  */}
@@ -105,7 +105,7 @@ const ChatBotComponent: React.FC = () => {
           <div className={styles.tiki_panel}>
             <div className={styles.tiki_header}>
               <div className={styles.tiki_avatar}>
-                <FontAwesomeIcon icon={faRobot} size="2x" />
+                <FontAwesomeIcon icon={faRobot} size='2x' />
               </div>
               <div className={styles.tiki_title}>Trợ lý AI</div>
               <button className={styles.tiki_minimize} onClick={() => setMinimized(!minimized)}>

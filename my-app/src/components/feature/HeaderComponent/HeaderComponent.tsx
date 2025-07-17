@@ -24,9 +24,9 @@ const HeaderComponent = () => {
 
   return (
     <div className="w-full bg-white">
-      <div className="max-w-screen-xl mx-auto flex items-center p-[10px]">
+      <div className="max-w-screen-xl mx-auto flex items-center p-[6px]">
         {/* Logo + Tiêu đề */}
-        <div className="flex items-center min-w-[230px]">
+        <div className={`${cx('title_md')} flex items-center min-w-[230px]`}>
           <div className={cx('wrapper-logo')}>
             <img src={logof7} width={48} height={48} alt="Logo" className="w-10 h-10" />
           </div>
@@ -48,10 +48,10 @@ const HeaderComponent = () => {
 
         {/* Đăng ký / Đăng nhập */}
         <div className={cx('wrapper-btn')}>
-          <button className={cx('btn')}>
+          <button className={cx('btn','btn_register')}>
             Đăng ký
           </button>
-          <button className={cx('btn','btn_register')}>
+          <button className={cx('btn','btn_login')}>
             Đăng nhập
           </button>
         </div>

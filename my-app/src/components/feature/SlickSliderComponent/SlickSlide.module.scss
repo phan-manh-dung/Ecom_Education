@@ -1,3 +1,4 @@
+@import "./SlickSlideReponsive.module.scss";
 .wrapper_banner {
   display: flex;
   padding: 20px 30px;
@@ -13,5 +14,6 @@
   }
 
   .image {
+    width: auto;
   }
 }

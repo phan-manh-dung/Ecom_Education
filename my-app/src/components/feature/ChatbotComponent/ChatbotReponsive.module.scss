@@ -1,0 +1,10 @@
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  .tiki_panel {
+    width: 90% !important;
+  }
+  .tiki_panel_wrapper {
+    right: 32px;
+    bottom: 15% !important;
+  }
+}

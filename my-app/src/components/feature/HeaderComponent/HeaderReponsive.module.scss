@@ -1,0 +1,30 @@
+/* Small devices (phones) */
+@media (max-width: 600px) {
+  .title {
+    display: none;
+  }
+  .title_md {
+    min-width: 0 !important; /* Ghi đè giá trị min-w-[230px] */
+  }
+  .btn_register {
+    display: none;
+  }
+}
+
+/* Medium devices (tablets) */
+@media (min-width: 601px) and (max-width: 900px) {
+  .title {
+    display: none;
+  }
+  .title_md {
+    min-width: 0 !important; /* Ghi đè giá trị min-w-[230px] */
+  }
+}
+
+/* Large devices (desktops) */
+@media (min-width: 901px) and (max-width: 1200px) {
+}
+
+/* Extra large devices (large desktops) */
+@media (min-width: 1201px) {
+}

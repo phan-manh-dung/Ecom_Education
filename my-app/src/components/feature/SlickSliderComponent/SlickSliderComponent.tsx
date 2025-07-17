@@ -14,7 +14,7 @@ import banner_javascript from '../../../../public/assets/javascriptpro.png';
 const banners = [
   {
     image: banner_web_react,
-    title: "F7 trên Facebook",
+    title: "F7 trên Facebook của chúng tôi.",
     description:
       "F7 được nhắc tới ở mọi nơi, ở đâu có cơ hội việc làm cho nghề IT và có những con người yêu thích lập trình F7 sẽ ở đó.",
     button: { text: "THAM GIA NHÓM", link: "https://facebook.com/groups/f8official" },
@@ -23,14 +23,14 @@ const banners = [
   {
     image: banner_8duan_react,
     title: "Khóa học ReactJS thực chiến",
-    description: "Tham gia khóa học ReactJS thực chiến để nâng cao kỹ năng lập trình.",
+    description: "Tham gia khóa học ReactJS thực chiến để nâng cao kỹ năng lập trình để có cơ hội việc làm tốt hơn.",
     button: { text: "XEM CHI TIẾT", link: "/courses/reactjs" },
     background: "linear-gradient(90deg, #ff512f 0%, #dd2476 100%)"
   },
   {
     image: banner_javascript,
-    title: "JavaScript Pro",
-    description: "Nâng cao kỹ năng JavaScript với các bài học chuyên sâu.",
+    title: "JavaScript Pro - Hero",
+    description: "Nâng cao kỹ năng JavaScript với các bài học chuyên sâu và thực hành dự án thực tế nâng cao tư duy lập trình.",
     button: { text: "HỌC NGAY", link: "/courses/javascript" },
     background: "linear-gradient(90deg, #a770ef 0%, #f6d365 100%)"
   },
@@ -46,7 +46,7 @@ const SlickSliderComponent: React.FC = () => {
     slidesToScroll: 1,
     arrows: true,
     autoplay: true,
-    autoplaySpeed: 2000,
+    autoplaySpeed: 200000,
     responsive: [
       {
         breakpoint: 768,
@@ -83,7 +83,7 @@ const SlickSliderComponent: React.FC = () => {
                   <img
                     src={banner.image}
                     alt={banner.title}
-                    className="w-full h-[260px] object-cover object-right rounded-3xl"
+                    className={`${cx('img_display')} w-full h-[260px] object-cover object-right rounded-3xl`}
                     draggable={false}
                   />
                 </div>

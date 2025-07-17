@@ -8,7 +8,7 @@ const cx = classNames.bind(styles);
 const FooterComponent: React.FC = () => {
   return (
     <div className={cx('wrapper_footer')}>
-      <div className="grid grid-cols-12 gap-4">
+      <div className={`${cx('footer_con')} grid grid-cols-12 gap-4`}>
         <div className={'col-span-3'}>
           <div style={{ display: 'flex', alignItems: 'center' }}>
             <img src={logof7} width={48} height={48} />
@@ -18,16 +18,22 @@ const FooterComponent: React.FC = () => {
             <li>
               <b>Điện thoại:</b> 08 1919 8989
             </li>
-            <li>
-              <b>Email:</b> phanmanhdung2k3@gmail.com
+            <li className="flex gap-1">
+              <b>Email:</b>
+              <span
+                className="truncate overflow-hidden whitespace-nowrap max-w-[150px] block"
+                title="phanmanhdung2k3@gmail.com">
+                phanmanhdung2k3@gmail.com
+              </span>
             </li>
+
             <li>
               <b>Địa chỉ:</b> Số 1, ngõ 41, Trần Duy Hưng, Cầu Giấy, Hà Nội
             </li>
           </ul>
         </div>
         <div className={'col-span-2'}>
-          <h3 style={{ textAlign: 'center' }}>Về F7</h3>
+          <h3>Về F7</h3>
           <ul>
             <li>Giới thiệu</li>
             <li>Liên hệ</li>
@@ -59,7 +65,7 @@ const FooterComponent: React.FC = () => {
         </div>
         <div className={'col-span-3'}>
           <h3>CÔNG TY CỔ PHẦN CÔNG NGHỆ GIÁO DỤC F7</h3>
-             <ul>
+          <ul>
             <li>
               <b>Mã số thuế:</b> 0292728262
             </li>
@@ -67,7 +73,8 @@ const FooterComponent: React.FC = () => {
               <b>Ngày thành lập:</b> 10/07/2025
             </li>
             <li>
-              <b>Lĩnh vực hoạt động:</b> Giáo dục, công nghệ - lập trình. Chúng tôi tập trung xây dựng và phát triển các sản phẩm mang lại giá trị cho cộng đồng lập trình viên Việt Nam.
+              <b>Lĩnh vực hoạt động:</b> Giáo dục, công nghệ - lập trình. Chúng tôi tập trung xây dựng và phát triển các
+              sản phẩm mang lại giá trị cho cộng đồng lập trình viên Việt Nam.
             </li>
           </ul>
         </div>

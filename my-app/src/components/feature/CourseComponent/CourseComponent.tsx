@@ -49,7 +49,7 @@ const CourseComponent = ({ id, title, price, auth, image, time, onCourseClick, v
   };
 
   return (
-    <div className={cx('wrapper_course')} key={id} onClick={handleClick} style={{ cursor: 'pointer' }}>
+    <div className={cx('wrapper_course')} key={id} onClick={handleClick} >
       <div className={cx('top_gradient')}>
         <img src={image} className={cx('img_bg')} alt="Course background" />
       </div>
