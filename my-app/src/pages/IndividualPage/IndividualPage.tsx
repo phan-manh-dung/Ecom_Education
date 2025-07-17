@@ -200,7 +200,7 @@ const IndividualPage = () => {
       <div className={cx('viewed_section')}>
         <div className={cx('viewed_header')}>
            <h1 className={cx('page_title')}>
-            <FontAwesomeIcon icon={faReceipt} className={cx('heart_icon')} />
+            <FontAwesomeIcon  icon={faReceipt} className={cx('heart_icon' ,'heart_icon_view')} />
             Khóa học đã xem
           </h1>
           {viewedCourses.length > 0 && (
