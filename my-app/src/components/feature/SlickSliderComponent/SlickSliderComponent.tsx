@@ -46,7 +46,7 @@ const SlickSliderComponent: React.FC = () => {
     slidesToScroll: 1,
     arrows: true,
     autoplay: true,
-    autoplaySpeed: 200000,
+    autoplaySpeed: 2000,
     responsive: [
       {
         breakpoint: 768,
